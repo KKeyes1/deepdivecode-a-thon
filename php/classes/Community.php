@@ -257,6 +257,43 @@ class Community implements \JsonSerializable {
 		return($communities);
 	}
 	/**
+	 * gets the community by community name
+	 *
+	 * @param |PDO $pdo PDO connection object
+	 * @param string $communityName community name to search by
+	 * @return \SplFixedArray SplFixedArray of communities found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 */
+	public static function getCommunityByCommunityName(\PDO $pdo, $communityName) : \SplFixedArray {
+		//saintize the strin before searching
+		$communityName = trim($communityName);
+		$communityName = filter_var($communityName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($communityName) === true) {
+			throw(new \PDOException("not a valid name"));
+		}
+		// create query template
+		$query = "SELECT communityId, communityProfileId, communityName FROM community WHERE communityName = :communityName";
+		$statement = $pdo->prepare($query);
+		//bind the community name to the place holder in the template
+		$parameters = ["communityName" => $communityName];
+		$statement->execute($parameters);
+		//build an array of communities
+		$communities = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$community = new Community($row["communityId"], $row["communityProfileId"], $row["communityName"]);
+				$communities[$communities->key()] = $community;
+				$communities->next();
+			} catch(\Exception $exception) {
+				//if the row could not be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($communities);
+	}
+	/**
 	 * gets all communities
 	 *
 	 * @param \PDO $pdo PDO connection object
