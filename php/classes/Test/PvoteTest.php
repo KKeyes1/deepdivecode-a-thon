@@ -70,7 +70,7 @@ class PvoteTest extends KmaruTest {
 		$this->community = new Community(generateUuidV4(), $this->profile->getProfileId(), "Health care");
 		$this->community->insert($this->getPDO());
 
-		// create and insert a pvote to own the test post
+		// create and insert a post to own the test post
 		$this->post = new Post(generateUuidV4(), $this->community->getCommunityId(), $this->profile->getProfileId(), $this->VALID_CONTENT);
 		$this->post->insert($this->getPDO());
 	}
