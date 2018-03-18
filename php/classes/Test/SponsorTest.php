@@ -1,9 +1,9 @@
 <?php
-namespace Edu\Cnm\Kmaru\Test;
+namespace Edu\Cnm\Forum\Test;
 
-use Edu\Cnm\Kmaru\Community;
-use Edu\Cnm\Kmaru\Profile;
-use Edu\Cnm\Kmaru\Post;
+use Edu\Cnm\Forum\Community;
+use Edu\Cnm\Forum\Profile;
+use Edu\Cnm\Forum\Post;
 
 //grab the class under scrutiny: Sponsor
 require_once(dirname(__DIR__) . "/autoload.php");
@@ -18,7 +18,7 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
  *
  * @see Sponsor
  **/
-class SponsorTest extends KmaruTest {
+class SponsorTest extends ForumTest {
 	/**
 	 * community linked to the post; this is for foreign key relations
 	 * @var Community
@@ -139,7 +139,7 @@ class SponsorTest extends KmaruTest {
 		$results = Sponsor::getSponsorBySponsorPostId($this->getPDO(), $this->post->getPostId());
 		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("sponsor"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Sponsor", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Forum\\Sponsor", $results);
 
 		//grab the result from the array and validate it
 		$pdoSponsor = $results[0];
@@ -173,7 +173,7 @@ class SponsorTest extends KmaruTest {
 		$results = Sponsor::getSponsorBySponsorProfileId($this->getPDO(), $this->profile->getProfileId());
 		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("sponsor"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Sponsor", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Forum\\Sponsor", $results);
 
 		//grab the result from the array and validate it
 		$pdoSponsor = $results[0];

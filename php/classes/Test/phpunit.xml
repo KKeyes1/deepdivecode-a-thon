@@ -1,0 +1,18 @@
+<phpunit>
+	<testsuites>
+		<testsuite name="Forum Test">
+			<file>ProfileTest.php</file>
+			<file>CommunityTest.php</file>
+			<file>PostTest.php</file>
+			<file>CommentTest.php</file>
+			<file>PvoteTest.php</file>
+			<file>CvoteTest.php</file>
+			<file>SponsorTest.php</file>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<whitelist processUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">..</directory>
+		</whitelist>
+	</filter>
+</phpunit>

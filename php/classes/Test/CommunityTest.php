@@ -1,8 +1,8 @@
 <?php
-namespace Edu\Cnm\Kmaru\Test;
+namespace Edu\Cnm\Forum\Test;
 
-use Edu\Cnm\Kmaru\Profile;
-use Edu\Cnm\Kmaru\Community;
+use Edu\Cnm\Forum\Profile;
+use Edu\Cnm\Forum\Community;
 
 //grab the class under scrutiny: Community
 require_once(dirname(__DIR__) . "/autoload.php");
@@ -17,7 +17,7 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
  *
  * @see Community
  **/
-class CommunityTest extends KmaruTest {
+class CommunityTest extends ForumTest {
 	/**
 	 * Profile that created the Community; this is for foreign key relations
 	 * @var Profile profile
@@ -153,7 +153,7 @@ class CommunityTest extends KmaruTest {
 		$results = Community::getCommunityByCommunityProfileId($this->getPDO(), $this->profile->getProfileId());
 		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("community"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Community", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Forum\\Community", $results);
 
 		//grab the result from the array and validate it
 		$pdoCommunity = $results[0];
@@ -191,7 +191,7 @@ class CommunityTest extends KmaruTest {
 	$this->assertCount(1, $results);
 
 	//enforce no other objects are bleeding into the test
-	$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Community", $results);
+	$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Forum\\Community", $results);
 
 	//grab the result from the array and validate it
 	$pdoCommunity = $results[0];
@@ -227,7 +227,7 @@ class CommunityTest extends KmaruTest {
 		$results = Community::getAllCommunitys($this->getPDO());
 		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("community"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Community", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Forum\\Community", $results);
 
 		//grab the result from the array and validate it
 		$pdoCommunity = $results[0];

@@ -1,6 +1,6 @@
 <?php
-namespace Edu\Cnm\Kmaru\Test;
-use Edu\Cnm\Kmaru\{Post, Comment, Profile};
+namespace Edu\Cnm\Forum\Test;
+use Edu\Cnm\Forum\{Post, Comment, Profile};
 // grab the class under scrutiny
 require_once(dirname(__DIR__) . "/autoload.php");
 // grab the uuid generator
@@ -13,7 +13,7 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
  *
  * @see Comment
  **/
-class CommentTest extends KmaruTest {
+class CommentTest extends ForumTest {
 	/**
 	 * profile id; this is for foreign key relations
 	 * @var Uuid comment profile
@@ -135,7 +135,7 @@ class CommentTest extends KmaruTest {
 		$results = Comment::getCommentByCommentPostId($this->getPDO(), $comment->getCommentPostId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("comment"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Comment", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Forum\\Comment", $results);
 
 		// grab the result from the array and validate it
 		$pdoComment = $results[0];

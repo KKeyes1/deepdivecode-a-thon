@@ -1,5 +1,5 @@
 <?php
-namespace Edu\Cnm\Kmaru;
+namespace Edu\Cnm\Forum;
 
 
 

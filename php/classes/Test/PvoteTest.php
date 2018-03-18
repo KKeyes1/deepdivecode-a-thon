@@ -1,10 +1,10 @@
 <?php
-namespace Edu\Cnm\Kmaru\Test;
+namespace Edu\Cnm\Forum\Test;
 
-use Edu\Cnm\Kmaru\Community;
-use Edu\Cnm\Kmaru\Profile;
-use Edu\Cnm\Kmaru\Post;
-use Edu\Cnm\Kmaru\Pvote;
+use Edu\Cnm\Forum\Community;
+use Edu\Cnm\Forum\Profile;
+use Edu\Cnm\Forum\Post;
+use Edu\Cnm\Forum\Pvote;
 
 //grab the class under scrutiny: Pvote
 require_once(dirname(__DIR__) . "/autoload.php");
@@ -19,7 +19,7 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
  *
  * @see Pvote
  **/
-class PvoteTest extends KmaruTest {
+class PvoteTest extends ForumTest {
 	/**
 	 * community linked to the post; this is for foreign key relations
 	 * @var Community
@@ -140,7 +140,7 @@ class PvoteTest extends KmaruTest {
 		$results = Pvote::getPvoteByPvotePostId($this->getPDO(), $this->post->getPostId());
 		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("pvote"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Pvote", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Forum\\Pvote", $results);
 
 		//grab the result from the array and validate it
 		$pdoPvote = $results[0];
@@ -174,7 +174,7 @@ class PvoteTest extends KmaruTest {
 		$results = Pvote::getPvoteByPvoteProfileId($this->getPDO(), $this->profile->getProfileId());
 		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("pvote"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Pvote", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Forum\\Pvote", $results);
 
 		//grab the result from the array and validate it
 		$pdoPvote = $results[0];

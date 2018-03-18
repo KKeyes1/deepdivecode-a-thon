@@ -1,6 +1,6 @@
 <?php
-namespace Edu\Cnm\Kmaru\Test;
-use Edu\Cnm\Kmaru\{Community, Post, Profile};
+namespace Edu\Cnm\Forum\Test;
+use Edu\Cnm\Forum\{Community, Post, Profile};
 // grab the class under scrutiny
 require_once(dirname(__DIR__) . "/autoload.php");
 // grab the uuid generator
@@ -13,7 +13,7 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
  *
  * @see Post
  **/
-class PostTest extends KmaruTest {
+class PostTest extends ForumTest {
 	/**
 	 * profile id; this is for foreign key relations
 	 * @var Uuid post profile
@@ -135,7 +135,7 @@ class PostTest extends KmaruTest {
 		$results = Post::getPostByPostCommunityId($this->getPDO(), $post->getPostCommunityId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("post"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Post", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Forum\\Post", $results);
 
 		// grab the result from the array and validate it
 		$pdoPost = $results[0];
