@@ -1,4 +1,4 @@
-ALTER DATABASE _CHANGE_DATABASE_NAME_ CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER DATABASE whoisken_2018_hack_a_thon CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 DROP TABLE IF EXISTS sponsor;
 DROP TABLE IF EXISTS cvote;
 DROP TABLE IF EXISTS pvote;
@@ -49,7 +49,7 @@ CREATE TABLE post(
 	postCommunityId BINARY(16) NOT NULL,
 	postProfileId BINARY (16) NOT NULL,
 	-- attribute for post:
-	postContent VARCHAR(1024),
+	postContent VARCHAR(40000),
 	-- unique index created:
 	INDEX (postCommunityId),
 	INDEX (postProfileId),
@@ -68,7 +68,7 @@ CREATE TABLE comment(
 	commentPostId BINARY(16) NOT NULL,
 	commentProfileId BINARY(16) NOT NULL,
 	-- attribute for comment:
-	commentContent VARCHAR(1024),
+	commentContent VARCHAR(40000),
 	-- unique index created:
 	INDEX (commentPostId),
 	INDEX (commentProfileId),
